@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "lita-voipfone"
-  spec.version       = "0.0.1"
+  spec.version       = "0.0.2"
   spec.authors       = ["Ed Jones"]
   spec.email         = ["hosting@errorstudio.co.uk"]
   spec.description   = %q{A handler for Lita which integrates with your Voipfone account}
