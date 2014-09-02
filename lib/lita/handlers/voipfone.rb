@@ -54,7 +54,6 @@ module Lita
 
       private
       def configure_voipfone(response)
-        response.reply("Contacting Voipfone - hold tight...")
         VoipfoneClient.configure do |c|
           c.username = Lita.config.handlers.voipfone.username
           c.password = Lita.config.handlers.voipfone.password
