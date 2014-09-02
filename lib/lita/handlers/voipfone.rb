@@ -21,7 +21,7 @@ module Lita
       }
 
       def divert(response)
-        configure_voipfone
+        configure_voipfone(response)
         number = response.matches[0][0]
         d = VoipfoneClient::GlobalDivert.new
         d.type = :all
@@ -33,7 +33,7 @@ module Lita
       end
 
       def undivert(response)
-        configure_voipfone
+        configure_voipfone(response)
         if VoipfoneClient::GlobalDivert.clear!
           response.reply("All phone diverts have been cleared.\n")
           show_diverts(response)
@@ -41,7 +41,7 @@ module Lita
       end
 
       def show_diverts(response)
-        configure_voipfone
+        configure_voipfone(response)
         diverts = VoipfoneClient::GlobalDivert.all
         if diverts.count == 0
           response.reply("There are no phone diverts set")
@@ -53,7 +53,8 @@ module Lita
       end
 
       private
-      def configure_voipfone
+      def configure_voipfone(response)
+        response.reply("Contacting Voipfone - hold tight...")
         VoipfoneClient.configure do |c|
           c.username = Lita.config.handlers.voipfone.username
           c.password = Lita.config.handlers.voipfone.password
